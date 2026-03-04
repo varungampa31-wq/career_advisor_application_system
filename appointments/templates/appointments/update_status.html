@@ -1,0 +1,16 @@
+<h2>Update Appointment</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Status:</label>
+    <select name="status">
+        <option value="Approved" {% if appointment.status == "Approved" %}selected{% endif %}>Approved</option>
+        <option value="Rejected" {% if appointment.status == "Rejected" %}selected{% endif %}>Rejected</option>
+        <option value="Pending" {% if appointment.status == "Pending" %}selected{% endif %}>Pending</option>
+    </select>
+    <br>
+    <label>Comments:</label>
+    <textarea name="comments">{{ appointment.comments }}</textarea>
+    <br>
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'career_advisor_dashboard' %}">Back to Dashboard</a>

@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | NCI Career Appointment Booking</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #001a33 0%, #003d80 50%, #007bff 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 50px 60px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 50px rgba(0, 123, 255, 0.4);
+            width: 380px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            animation: fadeIn 1.2s ease;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #bfe3ff;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .login-box p {
+            margin-bottom: 18px;
+        }
+
+        .login-box label {
+            font-size: 16px;
+            color: #e6f2ff;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.95);
+            font-size: 16px;
+            color: #001a33;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #007bff, #00aaff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 0 12px rgba(0, 170, 255, 0.5);
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #0066d6, #0088dd);
+            transform: scale(1.06);
+            box-shadow: 0 0 18px rgba(0, 170, 255, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <!-- FIXED: force redirect to role_redirect -->
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'role_redirect' %}">
+            {{ form.as_p }}
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>

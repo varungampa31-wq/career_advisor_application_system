@@ -1,0 +1,9 @@
+<h2>Approve/Reject Appointment</h2>
+<p>Student: {{ appointment.student.username }}</p>
+<p>Date: {{ appointment.date }}</p>
+<form method="POST">
+  {% csrf_token %}
+  <textarea name="comments" placeholder="Add comments...">{{ appointment.comments }}</textarea><br>
+  <button type="submit" name="action" value="approve">Approve</button>
+  <button type="submit" name="action" value="reject">Reject</button>
+</form>
